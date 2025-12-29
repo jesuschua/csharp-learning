@@ -1,16 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Reflection;
-Greeter.Main();
+string name = Greeter.GetName();
+Greeter.Greet(name);
 
 class Greeter
 {
-    public static string Main() 
-    {
-        string name = GetName();
-        Greet(name);
-        return name;
-    }
     public static string GetName() 
     {
         Console.WriteLine("What is your name?");
