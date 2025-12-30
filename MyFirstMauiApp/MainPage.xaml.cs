@@ -1,0 +1,40 @@
+﻿namespace MyFirstMauiApp;
+
+public partial class MainPage : ContentPage
+{
+	int count = 0;
+
+	public MainPage()
+	{
+		InitializeComponent();
+	}
+
+	private void OnCounterClicked(object? sender, EventArgs e)
+	{
+		count++;
+
+		if (count == 1)
+			CounterBtn.Text = $"Clicked {count} time";
+		else
+			CounterBtn.Text = $"Clicked {count} times";
+
+		SemanticScreenReader.Announce(CounterBtn.Text);
+	}
+	private void OnGreetClicked(object sender, EventArgs e)
+{
+    string name = NameEntry.Text;
+    ResultLabel.Text = Greeter.Greet(name);
+}
+}
+
+public static class Greeter
+{
+    public static string Greet(string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            name = "Guest";
+        return $"Hello, {name}!";
+    }
+}
+
+
