@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Electron App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to My Electron App</h1>
+            <p class="subtitle">Choose an option below</p>
+        </header>
+
+        <div class="content">
+            <!-- Greet Me Section -->
+            <section class="feature-card">
+                <h2>1. Greet Me</h2>
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        id="nameInput" 
+                        placeholder="Enter your name (optional)"
+                        class="input-field"
+                    >
+                    <button id="greetBtn" class="btn btn-primary">Greet Me</button>
+                </div>
+                <div id="greetResult" class="result"></div>
+            </section>
+
+            <!-- Add Two Numbers Section -->
+            <section class="feature-card">
+                <h2>2. Add Two Numbers</h2>
+                <div class="input-group">
+                    <input 
+                        type="number" 
+                        id="num1Input" 
+                        placeholder="First number"
+                        class="input-field"
+                    >
+                    <input 
+                        type="number" 
+                        id="num2Input" 
+                        placeholder="Second number"
+                        class="input-field"
+                    >
+                    <button id="addBtn" class="btn btn-primary">Add Numbers</button>
+                </div>
+                <div id="addResult" class="result"></div>
+            </section>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
+

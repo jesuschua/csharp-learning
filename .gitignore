@@ -43,3 +43,24 @@ artifacts/
 # macOS
 .DS_Store
 
+# Node.js / Electron
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.npm
+.node_repl_history
+
+# Electron build outputs
+dist/
+out/
+build/
+*.app
+*.dmg
+*.exe
+*.deb
+*.rpm
+*.AppImage
+
