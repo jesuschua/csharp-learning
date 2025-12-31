@@ -42,4 +42,6 @@ artifacts/
 
 # macOS
 .DS_Store
+*.app
+*.app/
 
