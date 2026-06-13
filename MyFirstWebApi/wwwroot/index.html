@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Web API - Frontend</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        input, button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #5568d3;
+        }
+        
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 5px;
+            font-size: 18px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .calculator-inputs {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .calculator-inputs span {
+            font-size: 24px;
+            text-align: center;
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 My First Web API</h1>
+        
+        <!-- Greeter Section -->
+        <div class="card">
+            <h2>👋 Greeter</h2>
+            <input type="text" id="nameInput" placeholder="Enter your name...">
+            <button onclick="greetMe()">Greet Me</button>
+            <div id="greetingResult" class="result"></div>
+        </div>
+        
+        <!-- Calculator Section -->
+        <div class="card">
+            <h2>🧮 Calculator</h2>
+            <div class="calculator-inputs">
+                <input type="number" id="num1" placeholder="First number">
+                <span>+</span>
+                <input type="number" id="num2" placeholder="Second number">
+            </div>
+            <button onclick="calculate()">Calculate</button>
+            <div id="calcResult" class="result"></div>
+        </div>
+    </div>
+
+    <script>
+        // Greeter function
+        async function greetMe() {
+            const name = document.getElementById('nameInput').value;
+            const resultDiv = document.getElementById('greetingResult');
+            
+            try {
+                const response = await fetch(`/greet/${name || ''}`);
+                const data = await response.json();
+                resultDiv.textContent = data.message;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                resultDiv.className = 'result';
+            }
+        }
+        
+        // Calculator function
+        async function calculate() {
+            const num1 = document.getElementById('num1').value;
+            const num2 = document.getElementById('num2').value;
+            const resultDiv = document.getElementById('calcResult');
+            
+            if (!num1 || !num2) {
+                resultDiv.textContent = 'Please enter both numbers!';
+                resultDiv.className = 'result';
+                return;
+            }
+            
+            try {
+                const response = await fetch(`/add/${num1}/${num2}`);
+                const data = await response.json();
+                resultDiv.textContent = `${data.a} + ${data.b} = ${data.sum}`;
+                resultDiv.className = 'result success';
+            } catch (error) {
+                resultDiv.textContent = 'Error: ' + error.message;
+                resultDiv.className = 'result';
+            }
+        }
+        
+        // Allow Enter key to trigger actions
+        document.getElementById('nameInput').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') greetMe();
+        });
+        
+        document.getElementById('num1').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') calculate();
+        });
+        
+        document.getElementById('num2').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') calculate();
+        });
+    </script>
+</body>
+</html>

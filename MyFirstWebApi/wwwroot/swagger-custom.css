@@ -1,0 +1,10 @@
+/* Hide SmartBear branding */
+.swagger-ui .topbar {
+    display: none;
+}
+
+/* Optional: Add your own header styling */
+.swagger-ui .info .title {
+    font-size: 2.5em;
+    color: #2c3e50;
+}

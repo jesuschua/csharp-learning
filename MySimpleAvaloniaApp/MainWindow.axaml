@@ -8,7 +8,7 @@
         Width="500" Height="400">
     
     <StackPanel Margin="20" Spacing="15">
-        <TextBlock Text="Welcome to My First Avalonia App!" 
+        <TextBlock Text="Welcome now to My First Avalonia App!" 
                    FontSize="24" 
                    FontWeight="Bold"
                    HorizontalAlignment="Center"
